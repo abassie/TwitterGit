@@ -74,19 +74,46 @@
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4O-ga-otx">
-                                                    <rect key="frame" x="95" y="72" width="46" height="30"/>
-                                                    <state key="normal" backgroundImage="like_off"/>
-                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gk5-eg-Mtf">
-                                                    <rect key="frame" x="185" y="72" width="46" height="30"/>
+                                                    <rect key="frame" x="193" y="76" width="25" height="21"/>
                                                     <state key="normal" backgroundImage="rt_off"/>
+                                                    <connections>
+                                                        <action selector="rtBtnPressed:" destination="2Ly-kA-l7x" eventType="touchUpInside" id="K2d-xq-3lT"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q3S-Lf-nkr">
+                                                    <rect key="frame" x="258" y="5" width="45" height="28"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbg-Hf-Sfv">
+                                                    <rect key="frame" x="125" y="76" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UAD-Pu-e2B">
+                                                    <rect key="frame" x="221" y="76" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F4O-ga-otx">
+                                                    <rect key="frame" x="102" y="77" width="21" height="19"/>
+                                                    <state key="normal" backgroundImage="like_off"/>
+                                                    <connections>
+                                                        <action selector="likeBtnPressed:" destination="2Ly-kA-l7x" eventType="touchUpInside" id="4CU-mS-ZQI"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="dateLabel" destination="q3S-Lf-nkr" id="fjg-pJ-jbK"/>
                                             <outlet property="likeBtn" destination="F4O-ga-otx" id="hBU-ob-3LW"/>
+                                            <outlet property="likeLabel" destination="kbg-Hf-Sfv" id="NeK-zD-gcb"/>
                                             <outlet property="rtBtn" destination="Gk5-eg-Mtf" id="yOw-U8-hdM"/>
+                                            <outlet property="rtCountLabel" destination="UAD-Pu-e2B" id="dSa-Yx-lYd"/>
                                             <outlet property="thumbImageView" destination="Glk-2n-gml" id="a5p-Ca-Ndi"/>
                                             <outlet property="tweetLabel" destination="8LE-8U-BEr" id="hZi-fl-nX7"/>
                                             <outlet property="userLabel" destination="Vd8-64-ufd" id="mAn-9e-qsQ"/>

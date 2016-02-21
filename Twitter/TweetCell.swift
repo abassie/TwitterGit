@@ -4,7 +4,7 @@
 //
 //  Created by Abby  Bassie on 2/20/16.
 //  Copyright © 2016 codepath. All rights reserved.
-//
+// HUGE thanks to Chase McCoy for helping me get this project working!
 
 import UIKit
 
@@ -21,6 +21,20 @@ class TweetCell: UITableViewCell {
     
     @IBOutlet weak var rtBtn: UIButton!
     
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var likeLabel: UILabel!
+    
+    @IBOutlet weak var rtCountLabel: UILabel!
+    
+    let dateFormatter: NSDateFormatter = {
+        let format = NSDateFormatter()
+        format.dateFormat = "h:mm"
+        return format
+    }()
+    
+    var indexPath: NSIndexPath!
+    
     var tweet: Tweet! {
         didSet {
             //ask Chase about this syntax
@@ -28,9 +42,33 @@ class TweetCell: UITableViewCell {
             tweetLabel.text = tweet?.text
             thumbImageView.setImageWithURL((tweet?.user.profileImageURL)!)
             setBtnStates()
+            dateLabel.text = dateFormatter.stringFromDate((tweet?.createdAt)!)
+            
+            rtCountLabel.text = "\((tweet.retweetCount)!)"
+            likeLabel.text = "\((tweet.favoritesCount)!)"
+            
+            setBtnStates()
             
         }
     }
+    
+    @IBAction func likeBtnPressed(sender: AnyObject) {
+        self.tweet.liked = true
+        self.tweet.favoritesCount! += 1
+        self.likeLabel.text = "\((self.tweet.favoritesCount)!)"
+        self.setBtnStates()
+    }
+    
+    
+    @IBAction func rtBtnPressed(sender: AnyObject) {
+        self.tweet.retweeted = true
+        self.tweet.retweetCount! += 1
+        self.rtCountLabel.text = "\((self.tweet.retweetCount)!)"
+        self.setBtnStates()
+        
+    }
+    
+    
     
     func setBtnStates() {
         if let retweeted = tweet?.retweeted {
@@ -69,7 +107,7 @@ class TweetCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
         
         rtBtn.setBackgroundImage(UIImage(named: "rt_on"), forState: .Disabled)
-        likeBtn.setBackgroundImage(UIImage(named: "rt_off"), forState: .Disabled)
+        likeBtn.setBackgroundImage(UIImage(named: "like_on"), forState: .Disabled)
         
         let btnTapped = UITapGestureRecognizer(target: self, action: "tappedUserImageView")
         btnTapped.numberOfTapsRequired = 1
@@ -84,5 +122,5 @@ class TweetCell: UITableViewCell {
         setBtnStates()
         
     }
-
+    
 }
