@@ -27,7 +27,14 @@ class User: NSObject {
         
         name = dictionary["name"] as? String
         screenname = dictionary["screen_name"] as? String
-        profileImageURL = dictionary["profile_image_url"] as? NSURL
+        //if let imageURL = dictionary["profile_image_url_https"] as? String {
+            //profileImageURL = NSURL(string: url)
+        
+        let profileString = dictionary["profile_image_url_https"] as? String
+        
+        if let profileString = profileString{
+            profileImageURL = NSURL(string: profileString)
+        }
         tagline = dictionary["description"] as? String
     }
     

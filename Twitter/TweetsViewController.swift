@@ -13,13 +13,13 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     @IBOutlet weak var tableView: UITableView!
     
     var tweets: [Tweet]?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-
+       
         // Do any additional setup after loading the view.
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             self.tweets = tweets
@@ -44,9 +44,14 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
-       
-        
+    func getIndex(sender: AnyObject) -> NSIndexPath? {
+        let buttonPosition = sender.convertPoint(CGPointZero, toView: tableView)
+        return tableView.indexPathForRowAtPoint(buttonPosition)
+    }
     
+
+    
+ 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("TweetCell", forIndexPath: indexPath) as! TweetCell
         
@@ -54,6 +59,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         return cell
     }
+    
+    
     
     @IBAction func onLogout(sender: AnyObject) {
         User.currentUser?.logout()

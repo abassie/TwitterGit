@@ -19,9 +19,9 @@ class TweetCell: UITableViewCell {
     var tweet: Tweet! {
         didSet {
             //ask Chase about this syntax
-            userLabel.text = tweet.user?.name
+            userLabel.text = tweet.user.name
             tweetLabel.text = tweet?.text
-            //thumbImageView.setImageWithURL((tweet?.user!.profileImageURL)!)
+            thumbImageView.setImageWithURL((tweet?.user.profileImageURL)!)
             
         }
     }
