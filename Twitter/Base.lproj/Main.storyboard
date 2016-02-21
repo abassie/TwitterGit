@@ -85,6 +85,8 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="likeBtn" destination="F4O-ga-otx" id="hBU-ob-3LW"/>
+                                            <outlet property="rtBtn" destination="Gk5-eg-Mtf" id="yOw-U8-hdM"/>
                                             <outlet property="thumbImageView" destination="Glk-2n-gml" id="a5p-Ca-Ndi"/>
                                             <outlet property="tweetLabel" destination="8LE-8U-BEr" id="hZi-fl-nX7"/>
                                             <outlet property="userLabel" destination="Vd8-64-ufd" id="mAn-9e-qsQ"/>
