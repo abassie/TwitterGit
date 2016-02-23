@@ -17,10 +17,12 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //These protocols tell software that tableview is managed by this view controller; connects storyboard to this code
         tableView.delegate = self
         tableView.dataSource = self
        
         // Do any additional setup after loading the view.
+        //must use Singleton here to access keys stored in TwitterClient
         TwitterClient.sharedInstance.homeTimelineWithParams(nil, completion: { (tweets, error) -> () in
             self.tweets = tweets
             self.tableView.reloadData()
@@ -34,6 +36,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         // Dispose of any resources that can be recreated.
     }
     
+    
+    //initializing the protocols allows us to use this code
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tweets != nil {
             return tweets!.count
@@ -66,14 +70,19 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         User.currentUser?.logout()
     }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "TweetDetailView" {
+            
+           
+            //when we click in the white space in the cell, the segue will be activated
+            let cell = sender as! TweetCell
+            let tweet = cell.tweet
+            
+             //use this subclass of UIViewcontroller so we can access tweet properties
+            let destinationViewController = segue.destinationViewController as! TweetDetailViewController
+            destinationViewController.tweet = tweet
+            destinationViewController.tweetCell = sender as? TweetCell
+        }
     }
-    */
-
 }

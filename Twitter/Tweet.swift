@@ -19,6 +19,7 @@ class Tweet: NSObject {
     var liked: Bool
     var retweeted: Bool
     
+    //dictionary is initialized; we get data from dictionary
     init(dictionary: NSDictionary) {
         
         self.dictionary = dictionary
@@ -43,8 +44,11 @@ class Tweet: NSObject {
         var tweets = [Tweet]()
         
         for dictionary in array {
+            
+            //for each dictionary in array of dictionary, get tweet
             tweets.append(Tweet(dictionary: dictionary))
         }
         return tweets
     }
+    
 }

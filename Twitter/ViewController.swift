@@ -25,6 +25,10 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
+    
+    //objects are instantiated within classes. Objects are used to implement properties or methods
+    //Singleton is an object that is created to be used in the entire project; identified by sharedInstance
+    
     @IBAction func onLogin(sender: AnyObject) {
         TwitterClient.sharedInstance.loginWithCompletion() {
             (user: User?, error: NSError?) in
