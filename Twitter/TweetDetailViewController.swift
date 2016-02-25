@@ -8,26 +8,39 @@
 
 import UIKit
 
-class TweetDetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class TweetDetailViewController: UIViewController {
+    
+    @IBOutlet weak var thumbImageView: UIImageView!
+    
+    @IBOutlet weak var userLabel: UILabel!
+    
+    @IBOutlet weak var tweetLabel: UILabel!
+    
+    @IBOutlet weak var likeBtn: UIButton!
+    
+    @IBOutlet weak var rtBtn: UIButton!
+    
+    @IBOutlet weak var dateLabel: UILabel!
+    
+    @IBOutlet weak var likeLabel: UILabel!
 
-    var tweetCell : TweetCell?
+    @IBOutlet weak var rtCountLabel: UILabel!
+    
+    
     
     var tweet: Tweet!
 
-    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        tableView.delegate = self
-        tableView.dataSource = self
+ userLabel.text = tweet.user.name
+        tweetLabel.text = tweet?.text
+        thumbImageView.setImageWithURL((tweet?.user.profileImageURL)!)
         
-        
-        // Do any additional setup after loading the view.
-    
-            self.tableView.reloadData()
-            //tweet.favorite here will do a post instead of get
-            
+        rtCountLabel.text = "\((tweet.retweetCount)!)"
+        likeLabel.text = "\((tweet.favoritesCount)!)"
+
         
     }
 
@@ -36,22 +49,7 @@ class TweetDetailViewController: UIViewController, UITableViewDataSource, UITabl
         // Dispose of any resources that can be recreated.
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tweet != nil {
-            return 1
-        } else {
-            
-            return 0
-        }
-        
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("TweetDetailCell", forIndexPath: indexPath) as! TweetCell
-        
-        cell.tweet = tweet!
-        
-        return cell
-    }
+
+
 
 }

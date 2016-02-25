@@ -82,7 +82,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
              //use this subclass of UIViewcontroller so we can access tweet properties
             let destinationViewController = segue.destinationViewController as! TweetDetailViewController
             destinationViewController.tweet = tweet
-            destinationViewController.tweetCell = sender as? TweetCell
+         
         }
     }
 }
