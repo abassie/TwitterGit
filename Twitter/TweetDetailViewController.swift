@@ -26,13 +26,36 @@ class TweetDetailViewController: UIViewController {
 
     @IBOutlet weak var rtCountLabel: UILabel!
     
+    @IBAction func likeBtnPressed(sender: AnyObject) {
+        self.tweet.liked = true
+        self.tweet.favoritesCount! += 1
+        self.likeLabel.text = "\((self.tweet.favoritesCount)!)"
+        self.setBtnStates()
+    }
     
+    @IBAction func rtBtnPressed(sender: AnyObject) {
+        self.tweet.retweeted = true
+        self.tweet.retweetCount! += 1
+        self.rtCountLabel.text = "\((self.tweet.retweetCount)!)"
+        self.setBtnStates()
+    }
+    
+
     
     var tweet: Tweet!
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
+        
+        
+        let dateFormatter: NSDateFormatter = {
+            let format = NSDateFormatter()
+            format.dateFormat = "h:mm"
+            return format
+        }()
 
  userLabel.text = tweet.user.name
         tweetLabel.text = tweet?.text
@@ -40,6 +63,8 @@ class TweetDetailViewController: UIViewController {
         
         rtCountLabel.text = "\((tweet.retweetCount)!)"
         likeLabel.text = "\((tweet.favoritesCount)!)"
+        
+        setBtnStates()
 
         
     }
@@ -50,6 +75,44 @@ class TweetDetailViewController: UIViewController {
     }
     
 
+    func setBtnStates() {
+        if let retweeted = tweet?.retweeted {
+            if retweeted {
+                rtBtn.setBackgroundImage(UIImage(named: "rt_on"), forState: .Normal)
+                rtBtn.enabled = false
+            }
+            else {
+                rtBtn.setBackgroundImage(UIImage(named: "rt_off"), forState: .Normal)
+                rtBtn.enabled = true
+            }
+            
+        }
+        
+        
+        if let liked = tweet?.liked {
+            if liked {
+                likeBtn.setBackgroundImage(UIImage(named: "like_on"), forState: .Normal)
+                likeBtn.enabled = false
+            }
+            else {
+                likeBtn.setBackgroundImage(UIImage(named: "like_off"), forState: .Normal)
+                likeBtn.enabled = true
+            }
+        }
+        
+           //may need to delete
+            rtBtn.setBackgroundImage(UIImage(named: "rt_on"), forState: .Disabled)
+            likeBtn.setBackgroundImage(UIImage(named: "like_on"), forState: .Disabled)
+            
+            let btnTapped = UITapGestureRecognizer(target: self, action: "tappedUserImageView")
+            btnTapped.numberOfTapsRequired = 1
+            thumbImageView.addGestureRecognizer(btnTapped)
+            
+            
+            // Configure the view for the selected state
+        }
+    }
+
+    
 
 
-}
